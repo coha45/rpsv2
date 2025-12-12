@@ -20,10 +20,12 @@ class Game:
         if self.cur_rounds <= 0:            
             self.over = True
 
+    def get_rand(self):
+        return random.choice(list(self.choices.keys()))
 
-    def determine_winner(self, choice):
+
+    def determine_winner(self, choice, ai_choice):
         if self.over: return 
-        ai_choice = random.choice(list(self.choices.keys()))
 
         if self.choices[choice] == ai_choice: # Win
             self.overall_wins += 1
