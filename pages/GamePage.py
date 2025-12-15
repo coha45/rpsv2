@@ -50,7 +50,7 @@ class Ui_MainWindow(object):
         self.playBtn_3.setStyleSheet("background-color: white;")
         self.playBtn_3.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(".\\../../../../Downloads/paper.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(".\\assets/paper.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.playBtn_3.setIcon(icon1)
         self.playBtn_3.setIconSize(QtCore.QSize(160, 160))
         self.playBtn_3.setObjectName("playBtn_3")
@@ -186,6 +186,7 @@ class Ui_MainWindow(object):
                     "plr2" : "Computer",
                     "winner" : "Player 2"
                 })
+            self.controller.set_window(0)
             
 
         def click(choice):

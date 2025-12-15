@@ -26,6 +26,8 @@ class Controller:
             page.setupUi(window)
 
     def set_window(self, index):
+        if index == 1:
+            self.new_game()
         self.stack_widget.setCurrentIndex(index)
 
     def start(self):
