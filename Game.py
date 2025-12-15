@@ -11,8 +11,9 @@ class Game:
         self.cur_rounds = self.controller.rounds
         self.over = False
         self.debounce = False   
-        self.overall_wins = 0
-        self.overall_losses = 0
+        self.plr_wins = 0
+        self.ai_wins = 0
+        self.log = []
 
     def advance_round(self):
         if self.cur_rounds <= 0: return
@@ -29,10 +30,10 @@ class Game:
         if self.over: return 
 
         if self.choices[choice] == ai_choice: # Win
-            self.overall_wins += 1
+            self.plr_wins += 1
             return 0
         elif self.choices[ai_choice] == choice: # Lose
-            self.overall_losses += 1
+            self.ai_wins += 1
             return 1
         else: # Draw
             return 2

@@ -30,44 +30,69 @@ class Ui_MainWindow(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(330, 380, 171, 41))
+        self.pushButton.setGeometry(QtCore.QRect(330, 430, 171, 41))
+        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton.setStyleSheet("font-size: 32px;\n"
 "color: white;\n"
 "background-color: #F26419;\n"
 "border-radius: 15px;\n"
 "text-align: center;")
         self.pushButton.setObjectName("pushButton")
-        self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(250, 150, 331, 151))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalFrame = QtWidgets.QFrame(self.centralwidget)
+        self.verticalFrame.setGeometry(QtCore.QRect(200, 150, 441, 231))
+        self.verticalFrame.setStyleSheet("background-color: #33658A;\n"
+"border-radius: 15px;\n"
+"box-sizing: border-box;")
+        self.verticalFrame.setObjectName("verticalFrame")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalFrame)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label_2 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_2 = QtWidgets.QLabel(self.verticalFrame)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_2.setFont(font)
+        self.label_2.setStyleSheet("color: white;\n"
+"margin-left: 10px;\n"
+"margin-right: 10px;")
         self.label_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_2.setObjectName("label_2")
         self.verticalLayout.addWidget(self.label_2)
-        self.lineEdit = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.nameInput = QtWidgets.QLineEdit(self.verticalFrame)
         font = QtGui.QFont()
         font.setPointSize(20)
-        self.lineEdit.setFont(font)
-        self.lineEdit.setObjectName("lineEdit")
-        self.verticalLayout.addWidget(self.lineEdit)
-        self.label_3 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.nameInput.setFont(font)
+        self.nameInput.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
+        self.nameInput.setStyleSheet("background-color: white;\n"
+"margin-left: 10px;\n"
+"margin-right: 10px;\n"
+"")
+        self.nameInput.setText("")
+        self.nameInput.setObjectName("nameInput")
+        self.verticalLayout.addWidget(self.nameInput)
+        self.label_3 = QtWidgets.QLabel(self.verticalFrame)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_3.setFont(font)
+        self.label_3.setStyleSheet("color: white;\n"
+"margin-left: 10px;\n"
+"margin-right: 10px;")
         self.label_3.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_3.setObjectName("label_3")
         self.verticalLayout.addWidget(self.label_3)
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.verticalLayout.addWidget(self.lineEdit_2)
+        self.roundsInput = QtWidgets.QLineEdit(self.verticalFrame)
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        self.roundsInput.setFont(font)
+        self.roundsInput.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
+        self.roundsInput.setStyleSheet("background-color: white;\n"
+"margin-left: 10px;\n"
+"margin-right: 10px;\n"
+"margin-bottom: 15px;")
+        self.roundsInput.setObjectName("roundsInput")
+        self.verticalLayout.addWidget(self.roundsInput)
         self.exitBtn = QtWidgets.QPushButton(self.centralwidget)
         self.exitBtn.setGeometry(QtCore.QRect(20, 20, 50, 50))
+        self.exitBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.exitBtn.setStyleSheet("background-color: rgba(0,0,0,0);")
         self.exitBtn.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(".\\assets/remove.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -76,14 +101,12 @@ class Ui_MainWindow(object):
         self.exitBtn.setObjectName("exitBtn")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 42))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
-        self.exitBtn.clicked.connect(lambda : self.controller.set_window(0))
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -94,4 +117,4 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Settings"))
         self.pushButton.setText(_translate("MainWindow", "Update"))
         self.label_2.setText(_translate("MainWindow", "Name:"))
-        self.label_3.setText(_translate("MainWindow", "Rounds"))
+        self.label_3.setText(_translate("MainWindow", "Rounds:"))
