@@ -10,6 +10,7 @@ class Game:
         self.controller = controller
         self.cur_rounds = self.controller.rounds
         self.over = False
+        self.debounce = False   
         self.overall_wins = 0
         self.overall_losses = 0
 

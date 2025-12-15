@@ -15,7 +15,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def __init__(self, controller):
         self.controller = controller
-        self.game = Game(self.controller)
+        self.game = controller.game
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -131,28 +131,45 @@ class Ui_MainWindow(object):
             self.nextRoundBtn.setVisible(False)
 
         def set_text(user, ai, winner):
-            self.userDisplay.setText(user)
-            self.aiDisplay.setText(ai)
+            self.userDisplay.setText(f"{self.controller.player_name} chose: {user}")
+            self.aiDisplay.setText(f"Computer chose: {user}")
             self.winnerLabel.setText(winner)
 
         def click(choice):
+                if self.game.debounce: return
                 choice2 = self.game.get_rand()
                 winner = self.game.determine_winner(choice, choice2)
-                print(choice2)
                 self.userDisplay.setVisible(True)
                 self.aiDisplay.setVisible(True)
                 self.winnerLabel.setVisible(True)
                 self.nextRoundBtn.setVisible(True)
                 if winner == 0:
-                    set_text(f"You chose: {choice}", f"The Computer chose: {choice2}", "You won!")
+                    set_text(choice, choice2, "You won!")
+                    self.controller.log.append({ 
+                        "name" : self.controller.player_name,
+                        "type" : "Win",
+                        "against" : "Computer"
+                    })
                 elif winner == 1:
-                    set_text(f"You chose: {choice}", f"The Computer chose: {choice2}", "You Lost!")
+                    set_text(choice, choice2, "You Lost!")
+                    self.controller.log.append({ 
+                        "name" : self.controller.player_name,
+                        "type" : "Loss",
+                        "against" : "Computer"
+                    })
                 elif winner == 2:
-                    set_text(f"You chose: {choice}", f"The Computer chose: {choice2}", "It was a draw!!")
+                    set_text(choice, choice2, "It was a draw!!")
+                    self.controller.log.append({ 
+                        "name" : self.controller.player_name,
+                        "type" : "Draw",
+                        "against" : "Computer"
+                    })
+                self.game.debounce = True
 
 
         def next_round_click():
             self.game.advance_round()
+            self.game.debounce = False
             if self.game.over:
                 self.controller.set_window(0)
             hide_all()

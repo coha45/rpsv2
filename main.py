@@ -2,6 +2,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from pages.MainPage import Ui_MainWindow as MainWindow
 from pages.test import Ui_MainWindow as TestWindow
 from pages.GamePage import Ui_MainWindow as GameWindow
+from pages.SettingsPage import Ui_MainWindow as SettingsWindow
+from Game import Game
 
 class Controller:
     def __init__(self):
@@ -10,15 +12,21 @@ class Controller:
         self.rounds = 3
         self.wins = 0
         self.losses = 0
+        self.player_name = "Player"
         self.log = [] # Clash Royale Reference
+        self.stack = []
+        self.game = Game(self)
 
-        for W in (MainWindow, GameWindow):
+        for W in (MainWindow, GameWindow, SettingsWindow):
             window = QtWidgets.QMainWindow()
             page = W(self)
+            self.stack.append(page)
             self.stack_widget.addWidget(window)
             page.setupUi(window)
 
     def set_window(self, index):
+        if index == 1:
+            self.game = Game(self)
         self.stack_widget.setCurrentIndex(index)
 
     def start(self):
