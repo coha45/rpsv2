@@ -23,7 +23,7 @@
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>40</y>
+      <y>70</y>
       <width>221</width>
       <height>61</height>
      </rect>
@@ -188,6 +188,30 @@ margin-bottom: 15px;</string>
      </size>
     </property>
    </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>20</y>
+      <width>591</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: red;</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -195,7 +219,7 @@ margin-bottom: 15px;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>43</height>
     </rect>
    </property>
   </widget>

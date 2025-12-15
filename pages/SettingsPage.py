@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(310, 40, 221, 61))
+        self.label.setGeometry(QtCore.QRect(310, 70, 221, 61))
         font = QtGui.QFont()
         font.setPointSize(32)
         self.label.setFont(font)
@@ -99,14 +99,54 @@ class Ui_MainWindow(object):
         self.exitBtn.setIcon(icon)
         self.exitBtn.setIconSize(QtCore.QSize(50, 50))
         self.exitBtn.setObjectName("exitBtn")
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(130, 20, 591, 51))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        self.label_4.setFont(font)
+        self.label_4.setStyleSheet("color: red;")
+        self.label_4.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_4.setObjectName("label_4")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 43))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+
+        self.label_4.setVisible(False)
+
+        def err_message(message):
+            self.label_4.setVisible(True)
+            self.label_4.setText(message)
+
+        def submit():
+            new_name = self.nameInput.text()
+            new_rounds = self.roundsInput.text()
+
+            # Validate
+            if not new_rounds.isdigit():
+                return err_message("Invalid Input for Rounds.")
+            
+            new_rounds = int(new_rounds)
+            
+            if new_rounds < 3 or new_rounds > 20:
+                return err_message("Rounds must be between 3-20.")
+
+            if len(new_name) <= 3 or len(new_name) > 20:
+                return err_message("Name must be between 4-20 characters long.")
+            
+            self.controller.rounds = new_rounds
+            self.controller.player_name = new_name
+
+            self.label_4.setVisible(False)
+            self.controller.set_window(0)
+
+
+        self.pushButton.clicked.connect(submit)
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -118,3 +158,4 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "Update"))
         self.label_2.setText(_translate("MainWindow", "Name:"))
         self.label_3.setText(_translate("MainWindow", "Rounds:"))
+        self.label_4.setText(_translate("MainWindow", "TextLabel"))

@@ -181,11 +181,12 @@ class Ui_MainWindow(object):
             if self.game.cur_rounds == self.controller.rounds:
                 check_winner()
             else:
-                 self.controller.log.append({
-                        "plr1" : self.controller.player_name,
-                        "plr2" : "Computer",
-                        "winner" : "Player 2"
-                    })
+                self.controller.log.append({
+                    "plr1" : self.controller.player_name,
+                    "plr2" : "Computer",
+                    "winner" : "Player 2"
+                })
+            
 
         def click(choice):
                 if self.game.debounce: return
