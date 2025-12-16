@@ -9,11 +9,13 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import threading 
 
 
 class Ui_MainWindow(object):
     def __init__(self, controller):
         self.controller = controller
+        self.logs = controller.logs
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -45,7 +47,11 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        
+        def short_poll():
+            self.logs = self.controller.logs
+
+        thread = threading.Thread(target=short_poll)
+        thread.start()
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)

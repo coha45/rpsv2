@@ -47,3 +47,4 @@ if __name__ == "__main__":
     ui = Controller()
     ui.start()
     sys.exit(app.exec_())
+

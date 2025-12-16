@@ -146,6 +146,7 @@ class Ui_MainWindow(object):
 
 
         self.pushButton.clicked.connect(submit)
+        self.exitBtn.clicked.connect(lambda : self.controller.set_window(0))
 
 
         self.retranslateUi(MainWindow)
