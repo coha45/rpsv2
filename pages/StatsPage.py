@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\StatsPage.ui'
+# Form implementation generated from reading ui file './StatsPage.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -9,13 +9,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import threading 
-
+import threading
 
 class Ui_MainWindow(object):
     def __init__(self, controller):
         self.controller = controller
-        self.logs = controller.logs
+        self.logs = controller.log
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -27,7 +26,7 @@ class Ui_MainWindow(object):
         self.exitBtn.setStyleSheet("background-color: rgba(0,0,0,0);")
         self.exitBtn.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\assets/remove.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(".\\../.designer/backup/assets/remove.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.exitBtn.setIcon(icon)
         self.exitBtn.setIconSize(QtCore.QSize(50, 50))
         self.exitBtn.setObjectName("exitBtn")
@@ -38,9 +37,16 @@ class Ui_MainWindow(object):
         self.label.setFont(font)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
+        self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
+        self.tableWidget.setGeometry(QtCore.QRect(180, 130, 411, 192))
+        self.tableWidget.setShowGrid(True)
+        self.tableWidget.setGridStyle(QtCore.Qt.SolidLine)
+        self.tableWidget.setRowCount(0)
+        self.tableWidget.setColumnCount(2)
+        self.tableWidget.setObjectName("tableWidget")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -48,11 +54,16 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         def short_poll():
-            self.logs = self.controller.logs
+            self.log = self.controller.log
+            self.tableWidget.setRowCount(len(self.log))
+            
+            headers = ["Player", "against"]
+            
+
 
         thread = threading.Thread(target=short_poll)
         thread.start()
-
+        
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -60,3 +71,13 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Game Log"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
