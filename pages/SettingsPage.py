@@ -9,11 +9,13 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import threading
+import time
 
 class Ui_MainWindow(object):
     def __init__(self, controller):
         self.controller = controller
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -117,6 +119,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.label_4.setVisible(False)
+
 
         def err_message(message):
             self.label_4.setVisible(True)

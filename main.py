@@ -6,8 +6,10 @@ from pages.SettingsPage import Ui_MainWindow as SettingsWindow
 from pages.StatsPage import Ui_MainWindow as StatsWindow
 from Game import Game
 
-class Controller:
+class Controller(QtCore.QObject):
+    update_game = QtCore.pyqtSignal()
     def __init__(self):
+        super().__init__()
         self.stack_widget = QtWidgets.QStackedWidget()
 
         self.rounds = 3
@@ -37,6 +39,7 @@ class Controller:
 
     def new_game(self):
         self.game = Game(self)
+        self.update_game.emit()
 
     def exit(self):
         sys.exit()

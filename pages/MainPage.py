@@ -15,6 +15,7 @@ class Ui_MainWindow(object):
     
     def __init__(self, controller):
         self.controller = controller
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -123,6 +124,8 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+
+        self.statsBtn.setVisible(False)
 
 
         self.playBtn.clicked.connect(lambda : self.controller.set_window(1))

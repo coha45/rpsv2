@@ -55,9 +55,7 @@ class Ui_MainWindow(object):
 
         def short_poll():
             self.log = self.controller.log
-            self.tableWidget.setRowCount(len(self.log))
-            
-            headers = ["Player", "against"]
+            print("Hi")
             
 
 

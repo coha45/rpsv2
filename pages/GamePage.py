@@ -15,6 +15,10 @@ class Ui_MainWindow(object):
     def __init__(self, controller):
         self.controller = controller
         self.game = controller.game
+
+    def sync(self):
+         self.game = self.controller.game
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -139,6 +143,8 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+
+        self.controller.update_game.connect(self.sync)
 
         def hide_all():
             self.userDisplay.setVisible(False)
